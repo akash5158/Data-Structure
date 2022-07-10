@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linked List</title>
+</head>
+
+<body>
+    <h1>Linked list</h1>
+</body>
+
+<script>
+    class N {
+        constructor(data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+    class LinkedList {
+        constructor() {
+            this.next = null;
+            this.size = 0;
+        }
+
+        add(data) {
+
+            var node = new N(data);
+            var current;
+
+            if (this.head == null) {
+                this.head = node;
+            }
+            else {
+                current = this.head;
+                while (current.next) {
+                    current = current.next;
+                }
+                current.next = node;
+            }
+            this.size++;
+        }
+
+        deleteN(val) {
+            if (this.head.data === val) {
+                this.head = this.head.next;
+            } else {
+                var previousN = this.head;
+                var currentN = previousN.next;
+                while (currentN) {
+                    if (currentN.data === val) {
+                        previousN.next = currentN.next;
+                        currentN = currentN.next;
+                        break;
+                    } else {
+                        previousN = currentN;
+                        currentN = currentN.next;
+                    }
+                }
+            }
+        };
+
+        displayList() {
+            var cur = this.head;
+            var str = " ";
+            while (cur) {
+                str += cur.data + " ";
+                cur = cur.next;
+            }
+            console.log(str);
+        }
+    }
+
+    var li = new LinkedList();
+    
+    li.add(10);
+    li.add(43);
+    li.add(16);
+    li.add(34);
+    li.add(98);
+    li.displayList();
+
+    li.deleteN(43);
+    console.log("After deleting 43")
+    li.displayList()
+</script>
+
+</html>
